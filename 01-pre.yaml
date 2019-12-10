@@ -1,0 +1,24 @@
+---
+- hosts: okd
+  tasks:
+
+    - hostname:
+        name: okd01h.example.com 
+      when: ansible_default_ipv4.address == "10.1.14.110"
+
+    - hostname:
+        name: okd02h.example.com 
+      when: ansible_default_ipv4.address == "10.1.14.225"
+
+    - hostname:
+        name: okd03h.example.com 
+      when: ansible_default_ipv4.address == "10.1.14.233"
+
+    - hostname:
+        name: okd04h.example.com 
+      when: ansible_default_ipv4.address == "10.1.14.237"
+
+    - hostname:
+        name: okd05h.example.com 
+      when: ansible_default_ipv4.address == "10.1.14.238"
+

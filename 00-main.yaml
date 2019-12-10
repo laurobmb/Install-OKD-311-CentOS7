@@ -1,0 +1,8 @@
+---
+- import_playbook: 01-pre.yaml
+- import_playbook: 02-origin_user.yaml
+- import_playbook: 03-package_install_basic.yaml
+- import_playbook: 04-copy_hosts_inventory.yaml
+- hosts: okd
+  tasks:
+    - shell: "reboot"
