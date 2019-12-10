@@ -11,13 +11,17 @@
  - 10.1.14.238 okd05h
 
 #### /etc/ansible/hosts
-
 [okd]
- - okd01h
- - okd02h
- - okd03h
- - okd04h
- - okd05h
+
+okd01h
+
+okd02h
+
+okd03h
+
+okd04h
+
+okd05h
 
 # Comandos de instalação
 ansible -m hostname -a "name=okd01h.example.com" okd01h
