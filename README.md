@@ -44,11 +44,15 @@ ansible -m systemd -a "name=docker enabled=yes state=restarted" okd
 
 #### CHECK ACCESS
 ssh -p2222 -i files/origin.priv origin@origin01h
+
 ssh -p2222 -i id_rsa origin@origin01h
 
 copy inventory to master node
+
 ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
+
 ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+
 ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/openshift-master/config.yml 
 
 pip install ansible==2.6
@@ -57,26 +61,37 @@ pip install ansible==2.6
 
 #### testando cluster
 oc get nodes
+
 oc get pods --all-namespaces
 
 #### criando cluster admin
 sudo htpasswd /etc/origin/master/htpasswd admin
+
 oc create clusterrolebinding registry-controller --clusterrole=cluster-admin --user=admin
 
 #### testanto
 oc login https://okd01h.example.com:8443
+
 oc get identity
 
 #### nova aplicação
 oc new-project meuprojeto
+
 oc tag --source=docker openshift/deployment-example:v2 deployment-example:latest 
+
 oc new-app deployment-example 
+
 oc status
+
 oc get all
+
 curl 172.30.46.237:8080 
+
 oc get pods
+
 oc get svc
 ### criando rotas
 oc expose service deployment-example 
+
 oc get route
 
