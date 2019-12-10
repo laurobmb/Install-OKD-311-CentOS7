@@ -3,18 +3,21 @@ https://www.server-world.info/en/note?os=CentOS_7&p=openshift311&f=1
 https://docs.okd.io/latest/install/example_inventories.html
 
 # CONFIGs
-10.1.14.110 okd01h
-10.1.14.225 okd02h
-10.1.14.233 okd03h
-10.1.14.237 okd04h
-10.1.14.238 okd05h
+#### /etc/hosts
+ - 10.1.14.110 okd01h
+ - 10.1.14.225 okd02h
+ - 10.1.14.233 okd03h
+ - 10.1.14.237 okd04h
+ - 10.1.14.238 okd05h
+
+#### /etc/ansible/hosts
 
 [okd]
-okd01h
-okd02h
-okd03h
-okd04h
-okd05h
+ - okd01h
+ - okd02h
+ - okd03h
+ - okd04h
+ - okd05h
 
 # Comandos de instalação
 ansible -m hostname -a "name=okd01h.example.com" okd01h
@@ -23,19 +26,19 @@ ansible -m hostname -a "name=okd03h.example.com" okd03h
 ansible -m hostname -a "name=okd04h.example.com" okd04h
 ansible -m hostname -a "name=okd05h.example.com" okd05h
 
-## CONFIG SERVICES
+#### CONFIG SERVICES
 ansible -m systemd -a "name=firewalld enabled=no state=stopped" okd
 
-## CONFIG USER
+#### CONFIG USER
 ansible-playbook origin_user.yaml
 
-## INSTALL PACKAGES
+#### INSTALL PACKAGES
 ansible-playbook package_install_basic.yml 
 
-## CONFIG SERVICES
+#### CONFIG SERVICES
 ansible -m systemd -a "name=docker enabled=yes state=restarted" okd
 
-## CHECK ACCESS
+#### CHECK ACCESS
 ssh -p2222 -i files/origin.priv origin@origin01h
 ssh -p2222 -i id_rsa origin@origin01h
 
