@@ -1,6 +1,6 @@
-https://www.server-world.info/en/note?os=CentOS_7&p=openshift311&f=1
-
-https://docs.okd.io/latest/install/example_inventories.html
+#### Referencias:
+ - https://www.server-world.info/en/note?os=CentOS_7&p=openshift311&f=1
+ - https://docs.okd.io/latest/install/example_inventories.html
 
 # CONFIGs
 #### /etc/hosts
