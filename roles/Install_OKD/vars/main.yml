@@ -1,3 +1,5 @@
+SEUUSUARIO: seu_usuario_local
+
 user_senha:
 - { name: origin, senha: '$1$1oPayu.H$X9bjFPrN5V1zg4w5k6N8n0' }
 

@@ -47,7 +47,7 @@
   when:
   - ansible_hostname == master_node
   delegate_to: localhost
-  become_user: lpgomes
+  become_user: '{{SEUUSUARIO}}'
   tags: 
   - getpub
 
