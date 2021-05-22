@@ -1,0 +1,63 @@
+# cria usuário origin
+- name: Acionando usuarios
+  user:
+    name: "{{item.name}}"
+    password: "{{ item.senha }}"
+  with_items: "{{ user_senha }}"
+
+# copia padrão sudores 
+- name: Sudores config
+  copy: 
+    src: ./files/openshift.sudores
+    dest: /etc/sudoers.d/openshift
+    backup: yes
+    owner: root
+    mode: '0400'
+
+- name: Origin directory SSHKEY
+  file:
+    path: /home/origin/.ssh
+    state: directory
+    owner: origin
+    mode: 0700
+
+# gera uma chave privada oara o usuário origin
+- name: Generate an OpenSSH keypair ECDSA
+  openssh_keypair:
+    path: /home/{{item.name}}/.ssh/id_rsa
+    owner: "{{item.name}}"
+    group: "{{item.name}}"
+    type: ecdsa
+    state: present
+    mode: 0400
+  with_items: "{{ user_senha }}"
+  register: SSHKEY
+  when: 
+    - ansible_hostname == master_node
+  tags: 
+  - getpub
+
+# cria um arquivo com a chave publica
+- name: Pegar ecdsa-sha2-nistp256.pub                                                                               
+  lineinfile:                                                                                              
+    line: "{{item.public_key}}" 
+    dest: roles/Install_OKD/files/ecdsa-sha2-nistp256.pub
+    insertafter: EOF
+  with_items: "{{ SSHKEY.results }}"
+  when:
+  - ansible_hostname == master_node
+  delegate_to: localhost
+  become_user: lpgomes
+  tags: 
+  - getpub
+
+#  copia a chave publica para os servidres do cluster openshift
+- name: Copiar ecdsa-sha2-nistp256.pub para os servidores
+  authorized_key:
+    user: origin
+    state: present
+    key: "{{ lookup('file', './files/ecdsa-sha2-nistp256.pub') }}"
+
+
+
+

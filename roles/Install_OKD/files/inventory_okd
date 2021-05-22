@@ -12,9 +12,9 @@ debug_level=2
 os_firewall_use_firewalld=false
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
 
-openshift_master_cluster_hostname=okd01h.example.com
-openshift_master_cluster_public_hostname=okd01h.example.com
-openshift_master_default_subdomain=apps.okdh.example.com
+openshift_master_cluster_hostname=okd01.w0rm30.seg.br
+openshift_master_cluster_public_hostname=okd01.w0rm30.seg.br
+openshift_master_default_subdomain=apps.okd.w0rm30.seg.br
 
 openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_storage_driver,docker_image_availability,openshift_release,package_version,package_availability,package_update
 
@@ -22,7 +22,7 @@ openshift_disable_check=memory_availability,disk_availability,docker_storage,doc
 ##  Aggregating Logging. #11#
 #######################################################################
 openshift_logging_install_logging=true
-openshift_logging_kibana_hostname=logging.okdh.example.com
+openshift_logging_kibana_hostname=logging.okd.w0rm30.seg.br
 openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra":"true"}
 openshift_logging_curator_nodeselector={"node-role.kubernetes.io/infra":"true"}
 openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
@@ -45,16 +45,16 @@ openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"
 openshift_metrics_server_install=true
 
 [masters]
-okd01h.example.com 
+okd01.w0rm30.seg.br 
 
 [etcd]
-okd01h.example.com
+okd01.w0rm30.seg.br
 
 [nodes]
-okd01h.example.com openshift_node_group_name='node-config-master'
-okd02h.example.com openshift_node_group_name='node-config-infra'
-okd03h.example.com openshift_node_group_name='node-config-infra'
-okd04h.example.com openshift_node_group_name='node-config-compute'
-okd05h.example.com openshift_node_group_name='node-config-compute'
+okd01.w0rm30.seg.br openshift_node_group_name='node-config-master'
+okd02.w0rm30.seg.br openshift_node_group_name='node-config-infra'
+okd03.w0rm30.seg.br openshift_node_group_name='node-config-infra'
+okd04.w0rm30.seg.br openshift_node_group_name='node-config-compute'
+okd05.w0rm30.seg.br openshift_node_group_name='node-config-compute'
 
 

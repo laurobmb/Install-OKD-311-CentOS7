@@ -1,0 +1,40 @@
+user_senha:
+- { name: origin, senha: '$1$1oPayu.H$X9bjFPrN5V1zg4w5k6N8n0' }
+
+okd01: "12.0.31.10"
+okd02: "12.0.28.71"
+okd03: "12.0.19.90"
+okd04: "12.0.18.236"
+okd05: "12.0.30.76"
+
+master_node: okd01
+
+pacotes_basic:
+  - yum-utils 
+  - device-mapper-persistent-data 
+  - lvm2 
+  - nfs-utils 
+  - git 
+  - pyOpenSSL 
+  - iptables-services
+  - java
+  - python-passlib
+  - PyYAML
+  - python-jinja2
+  - python-paramiko
+  - python-setuptools
+  - python2-cryptography
+  - sshpass
+
+pacotes_dependencias_openshift:
+  - docker 
+  - centos-release-openshift-origin311      
+
+pacotes_openshift:
+  - openshift-ansible
+
+
+
+
+
+

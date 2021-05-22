@@ -1,0 +1,13 @@
+---
+- name: copiando hosts
+  when: ansible_hostname == master_node  
+  copy:
+    src: roles/Install_OKD/files/inventory_okd
+    dest: /etc/ansible/hosts
+
+- name: copiando ansible.cfg
+  when: ansible_hostname == master_node
+  copy:
+    src: roles/Install_OKD/files/ansible.cfg
+    dest: /etc/ansible/ansible.cfg
+    

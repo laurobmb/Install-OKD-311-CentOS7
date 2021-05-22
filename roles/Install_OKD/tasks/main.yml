@@ -1,0 +1,21 @@
+---
+- include: change_name.yml
+  tags: [ name ]
+
+- include: origin_user.yml
+  tags: [ createuser ]
+
+- include: package_install_basic.yml
+  tags: [ install ]
+
+- include: copy_hosts_inventory.yml
+  tags: [ copyinventory ]
+
+- include: hosts.yml
+  tags: [ etchosts ]
+
+
+
+
+
+

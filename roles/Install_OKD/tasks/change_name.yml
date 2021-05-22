@@ -1,0 +1,36 @@
+---
+
+- name: mudando nome do host 
+  when: ansible_default_ipv4.address == "{{okd01}}"
+  hostname:
+    name: okd01.w0rm30.seg.br
+  tags:
+  - hostname
+  
+- name: mudando nome do host
+  when: ansible_default_ipv4.address == "{{okd02}}"
+  hostname:
+    name: okd02.w0rm30.seg.br 
+  tags:
+  - hostname
+      
+- name: mudando nome do host
+  when: ansible_default_ipv4.address == "{{okd03}}"
+  hostname:
+    name: okd03.w0rm30.seg.br 
+  tags:
+  - hostname
+
+- name: mudando nome do host
+  when: ansible_default_ipv4.address == "{{okd04}}"
+  hostname:
+    name: okd04.w0rm30.seg.br 
+  tags:
+  - hostname
+
+- name: mudando nome do host
+  when: ansible_default_ipv4.address == "{{okd05}}"
+  hostname:
+    name: okd05.w0rm30.seg.br 
+  tags:
+  - hostname

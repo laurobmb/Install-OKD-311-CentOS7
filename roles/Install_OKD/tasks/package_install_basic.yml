@@ -1,0 +1,52 @@
+---
+- name: Atualização das maáquinas
+  yum: 
+    name: "*" 
+    state: latest
+
+- name: Instalação de pacotes
+  yum:
+    name: "{{pacotes_basic}}"
+    state: latest
+
+- name: Instalação de pacotes_dependencias_openshift 
+  yum: 
+    name: "{{pacotes_dependencias_openshift}}" 
+    state: latest
+
+- name: Instalação de pacotes do pacotes_openshift 
+  yum: 
+    name: "{{pacotes_openshift}}" 
+    state: latest
+
+- name: Instalação pip
+  yum: 
+    name: "{{item}}" 
+    state: latest
+  loop:
+    - python3-pip.noarch
+    - python2-pip.noarch
+
+- name: Instalando o ANSIBLE 2.6
+  pip:
+    name: ansible==2.6
+
+- name: Criando diretório do ANSIBLE
+  file:
+    path: /etc/ansible/
+    state: directory
+    owner: root
+    mode: 0755
+
+- name: Parando e removendo o FIREWALLD
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+  ignore_errors: true
+
+- name: Parando e removendo o FIREWALLD
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
