@@ -55,7 +55,7 @@
     enabled: no
   ignore_errors: true
 
-- name: Parando e removendo o FIREWALLD
+- name: Iniciando DOCKER
   systemd:
     name: docker
     state: started
