@@ -35,7 +35,7 @@ variable "tags" {
 
 variable "okd_instance_type" {
     description = "OKD instance type"
-    default     = "t2.medium"
+    default     = "t2.large"
 }
 
 variable "okd_count" {

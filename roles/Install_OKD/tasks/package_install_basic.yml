@@ -1,10 +1,20 @@
 ---
-- name: Atualização das maáquinas
-  yum: 
-    name: "*" 
+- name: Instalação pacotes iniciais
+  yum:
+    name: "{{item}}"
     state: latest
+  loop:
+  - epel-release
+  - python3
+  - NetworkManager
 
-- name: Instalação de pacotes
+- name: Enable Network Manager
+  service: 
+    name: NetworkManager
+    enabled: true
+    state: started
+
+- name: Instalação de pacotes basicos
   yum:
     name: "{{pacotes_basic}}"
     state: latest

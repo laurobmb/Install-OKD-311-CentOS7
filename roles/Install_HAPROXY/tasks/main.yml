@@ -1,0 +1,42 @@
+---
+- name: Install software
+  package:
+    name: haproxy
+    state: present
+
+- name: Insert to config HAPROXY in the file.
+  blockinfile:
+    path: /etc/haproxy/haproxy.cfg
+    state: present
+    block: |
+      frontend okd_frontend_http
+          mode tcp
+          bind 12.0.27.102:80
+          default_backend k8s_backend_http
+      backend k8s_backend_http
+          mode tcp
+          server okd02.w0rm30.seg.br 12.0.26.84:80 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check
+          server okd03.w0rm30.seg.br 12.0.23.61:80 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check
+      frontend okd_frontend_https
+          mode tcp
+          bind 12.0.27.102:443
+          default_backend okd_backend_https
+      backend okd_backend_https
+          mode tcp
+          server okd02.w0rm30.seg.br 12.0.26.84:443 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check
+          server okd03.w0rm30.seg.br 12.0.23.61:443 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check      
+      frontend okd_frontend_8443
+          mode tcp
+          bind 12.0.27.102:8443
+          default_backend okd_backend_8443
+      backend okd_backend_8443
+          mode tcp
+          server okd02.w0rm30.seg.br 12.0.26.84:8443 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check
+          server okd03.w0rm30.seg.br 12.0.23.61:8443 weight 1 maxconn 5000 inter 2s rise 2 fall 3 check      
+
+- name: Reset service
+  systemd:
+    name: haproxy
+    state: restarted
+    enabled: yes
+

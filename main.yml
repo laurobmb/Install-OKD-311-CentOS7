@@ -6,18 +6,9 @@
   - name: 'Atualizando repositorio'
     raw: 'yum -y update'
 
-  - name: Instalação python3
-    yum:
-      name: "{{item}}"
-      state: latest
-    loop:
-    - epel-release
-    - python3
-
   roles:
   - { role: Install_OKD, tags: ["install_okd"]}
 
-#- hosts: hsproxys
-#  roles:
-#  - { role: create-cluster, tags: ["create_cluster_role"]}
-#
+- hosts: hsproxys
+  roles:
+  - { role: Install_HAPROXY, tags: ["create_haproxy"]}
