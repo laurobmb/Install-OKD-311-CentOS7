@@ -39,10 +39,8 @@ pacotes_basic:
 
 pacotes_dependencias_openshift:
   - docker 
-  - centos-release-openshift-origin311      
+  #- centos-release-openshift-origin311      
 
-pacotes_openshift:
-  - openshift-ansible
 
 
 
